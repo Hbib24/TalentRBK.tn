@@ -20,7 +20,7 @@ function LoginForm() {
     if (!email || !password) return setError('Fill in the fields');
     setLoading(true);
     axios({
-      url: '/api/user/login',
+      url: 'http://localhost:3001/api/user/login',
       method: 'POST',
       data: { email: email, password: password },
     }).then((res) => {
@@ -33,7 +33,7 @@ function LoginForm() {
             isLogged: true,
           })
         );
-        history.push('/home');
+        history.push('/admin/student/0');
       } else {
         if (res.data.exists) {
           setError('Wrong password');

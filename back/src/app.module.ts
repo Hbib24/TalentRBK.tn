@@ -1,25 +1,26 @@
 import { UserService } from './users/user.service';
-import { FileService } from './fileUpload/file.service';
 import { UserController } from './users/user.controller';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './users/user.model';
-import { File, FileSchema } from './fileUpload/file.model';
+import { StudentController } from './students/student.controller';
+import { StudentService } from './students/student.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { JwtModule } from '@nestjs/jwt';
-import { FileController } from './fileUpload/file.controller';
 import { MulterModule } from '@nestjs/platform-express';
 import { join } from 'path';
+import { from } from 'rxjs';
+import { Student, StudentSchema } from './students/student.model';
 require('dotenv').config();
 
 @Module({
-  controllers: [UserController, FileController],
-  providers: [UserService, FileService],
+  controllers: [UserController, StudentController],
+  providers: [UserService, StudentService],
   imports: [
     MongooseModule.forRoot(process.env.DB_URI),
     MongooseModule.forFeature([
       { name: User.name, schema: UserSchema },
-      { name: File.name, schema: FileSchema },
+      { name: Student.name, schema: StudentSchema },
     ]),
     JwtModule.register({
       secret: process.env.SECRET,

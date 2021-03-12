@@ -16,7 +16,7 @@ function AccountRegistration() {
 
   var submit = () => {
     axios
-      .put('/api/user/register/' + user_id, {
+      .put('http://localhost:3001/api/user/register/' + user_id, {
         password: password,
       })
       .then((res) => {

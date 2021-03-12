@@ -32,8 +32,11 @@ export class UserService {
     return { message: 'password is not valid', exists: true };
   }
 
-  async getAll() {
-    let users = await this.userModel.find({}, { password: false });
+  async getCompanies() {
+    let users = await this.userModel.find(
+      { role: 'company' },
+      { password: false },
+    );
 
     return users;
   }
@@ -41,6 +44,7 @@ export class UserService {
   async registerPass(id, pass) {
     let promise = await this.userModel.findByIdAndUpdate(id, {
       password: pass,
+      status: 'active',
     });
     return promise;
   }

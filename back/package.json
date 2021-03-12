@@ -29,6 +29,7 @@
     "@nestjs/passport": "^7.1.5",
     "@nestjs/platform-express": "^7.5.1",
     "@nestjs/serve-static": "^2.1.4",
+    "@types/faker": "^5.1.7",
     "bcrypt": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.16",
@@ -62,7 +63,8 @@
     "ts-loader": "^8.0.8",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "^4.0.5"
+    "typescript": "^4.0.5",
+    "faker": "5.4.0"
   },
   "jest": {
     "moduleFileExtensions": [

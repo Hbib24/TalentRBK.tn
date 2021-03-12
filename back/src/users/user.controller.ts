@@ -37,7 +37,17 @@ export class UserController {
           subject: 'Hello, Please register your account', // Subject line
           html: `click on this <a href="http://localhost:3001/api/user/confirmation/${token}">link</a>`,
         });
+
+        const data = {
+          username: user.username,
+          role: user.role,
+          email: user.email,
+          status: user.status,
+        };
+
+        res.send(data);
       })
+
       .catch((err) => {
         res.send({ message: err, saved: false });
       });
@@ -79,8 +89,11 @@ export class UserController {
     });
   }
 
-  @Get('/')
-  getAll() {
-    return this.userService.getAll();
+  @Get('/company')
+  getCompanies(@Res() res: Response) {
+    return this.userService
+      .getCompanies()
+      .then((companies) => res.status(200).send(companies))
+      .catch((err) => res.send(err));
   }
 }
